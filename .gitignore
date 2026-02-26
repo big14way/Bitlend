@@ -1,0 +1,28 @@
+
+**/settings/Mainnet.toml
+**/settings/Testnet.toml
+.cache/**
+history.txt
+
+logs
+*.log
+npm-debug.log*
+coverage
+*.info
+costs-reports.json
+node_modules
+
+# Oracle service
+oracle-service/.env
+oracle-service/dist/
+
+# Frontend
+frontend/.next/
+frontend/out/
+frontend/.env.local
+
+# OS
+.DS_Store
+
+# Deployments (local)
+deployments/.*.toml
