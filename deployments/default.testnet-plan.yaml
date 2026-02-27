@@ -1,0 +1,58 @@
+---
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - requirement-publish:
+            contract-id: SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9.nft-trait
+            remap-sender: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            remap-principals:
+              SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            cost: 4680
+            path: "./.cache/requirements/SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9.nft-trait.clar"
+            clarity-version: 1
+        - requirement-publish:
+            contract-id: SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard
+            remap-sender: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            remap-principals:
+              SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            cost: 8400
+            path: "./.cache/requirements/SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar"
+            clarity-version: 1
+      epoch: "2.0"
+    - id: 1
+      transactions:
+        - contract-publish:
+            contract-name: credit-identity
+            expected-sender: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            cost: 54280
+            path: contracts/credit-identity.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: credit-oracle
+            expected-sender: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            cost: 27440
+            path: contracts/credit-oracle.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: loan-vault
+            expected-sender: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            cost: 94280
+            path: contracts/loan-vault.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: mock-usdcx
+            expected-sender: ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G
+            cost: 15670
+            path: contracts/mock-usdcx.clar
+            anchor-block-only: true
+            clarity-version: 2
+      epoch: "3.0"
