@@ -52,14 +52,14 @@ Every loan origination, repayment, and default in BitLend is recorded on the Sta
 
 ## Testnet Deployment
 
-All contracts are live on Stacks testnet, deployed under [`ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G`](https://explorer.hiro.so/address/ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G?chain=testnet):
+All contracts are live on Stacks testnet (Clarity 4, epoch 3.3), deployed under [`ST2Q9M3TPDVB37VN1BW68SHARPF77Q4ZJ4XVZZBXS`](https://explorer.hiro.so/address/ST2Q9M3TPDVB37VN1BW68SHARPF77Q4ZJ4XVZZBXS?chain=testnet):
 
 | Contract | Testnet Address | Explorer |
 |---|---|---|
-| `credit-identity` | `ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G.credit-identity` | [View](https://explorer.hiro.so/txid/b52724bd8fdb2a34e005cd0d9ddbc239fa98058577af96580b379f4bbd8b9974?chain=testnet) |
-| `credit-oracle` | `ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G.credit-oracle` | [View](https://explorer.hiro.so/txid/f2a9ac25ffccfe4613a554b03778c4aa33c11df5c3a51d787957856cbeb56bc0?chain=testnet) |
-| `loan-vault` | `ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G.loan-vault` | [View](https://explorer.hiro.so/txid/f48ce7c4d297f9348c3f9877d429db82d1c2678b36d01e6972c02df472b92a47?chain=testnet) |
-| `mock-usdcx` | `ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G.mock-usdcx` | [View](https://explorer.hiro.so/txid/3f09c185147cb3185609d0b0283c82c39431d711c8ea8bc0bc9cc6083bff0a86?chain=testnet) |
+| `credit-identity` | `ST2Q9M3TPDVB37VN1BW68SHARPF77Q4ZJ4XVZZBXS.credit-identity` | [View](https://explorer.hiro.so/txid/4f9779ab4cb8d8a3d28a5fda60922e4181920547a0ac615dc3872cd7e09864da?chain=testnet) |
+| `credit-oracle` | `ST2Q9M3TPDVB37VN1BW68SHARPF77Q4ZJ4XVZZBXS.credit-oracle` | [View](https://explorer.hiro.so/txid/1a3ef0349495de4c82436b9c3380dd3690274e68c6a71a6214512f9a8c131366?chain=testnet) |
+| `loan-vault` | `ST2Q9M3TPDVB37VN1BW68SHARPF77Q4ZJ4XVZZBXS.loan-vault` | [View](https://explorer.hiro.so/txid/291b44c3876c34957ff7a16e35483e12563ac65f055aacb3717e04505aaa6437?chain=testnet) |
+| `mock-usdcx` | `ST2Q9M3TPDVB37VN1BW68SHARPF77Q4ZJ4XVZZBXS.mock-usdcx` | [View](https://explorer.hiro.so/txid/873168faaec39e4a9a34f7e500b50d805cc121a942563721f20221daac1b1f6f?chain=testnet) |
 
 ## Smart Contracts
 
@@ -207,7 +207,7 @@ Credit scores (0-1000) are computed from zkTLS-verified signals via Reclaim Prot
 ## Grant Milestones
 
 ### Milestone 1 (Week 2)
-- [x] All 4 contracts deployed to testnet (`ST2DT31XAN95VHDF69ZK93EGCME9KVJ73N3BV6R5G`)
+- [x] All 4 contracts deployed to testnet (`ST2Q9M3TPDVB37VN1BW68SHARPF77Q4ZJ4XVZZBXS`) - Clarity 4
 - [x] `clarinet test` passing 100% (46/46 tests)
 
 ### Milestone 2 (Week 4)
