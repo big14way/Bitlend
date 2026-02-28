@@ -64,10 +64,11 @@
       (/ (* amount current-shares) current-deposits)
     ))
     (user-existing-shares (default-to u0 (map-get? lp-shares tx-sender)))
+    (vault-principal (unwrap-panic (as-contract? () tx-sender)))
   )
     (asserts! (> amount u0) ERR-ZERO-AMOUNT)
     ;; Transfer USDCx from user to this contract
-    (try! (contract-call? token transfer amount tx-sender (as-contract tx-sender) none))
+    (try! (contract-call? token transfer amount tx-sender vault-principal none))
     ;; Update state
     (var-set total-shares (+ current-shares new-shares))
     (var-set total-deposits (+ current-deposits amount))
@@ -89,7 +90,11 @@
     (asserts! (<= shares user-shares) ERR-INSUFFICIENT-SHARES)
     (asserts! (<= withdraw-amount current-deposits) ERR-INSUFFICIENT-LIQUIDITY)
     ;; Transfer USDCx from contract to user
-    (try! (as-contract (contract-call? token transfer withdraw-amount tx-sender caller none)))
+    (match (as-contract? ((with-all-assets-unsafe))
+      (try! (contract-call? token transfer withdraw-amount tx-sender caller none))
+      true)
+      success true
+      err-code (asserts! false (err err-code)))
     ;; Update state
     (var-set total-shares (- current-shares shares))
     (var-set total-deposits (- current-deposits withdraw-amount))
@@ -131,7 +136,11 @@
     ;; Check vault has enough liquidity
     (asserts! (>= current-deposits max-amount) ERR-INSUFFICIENT-LIQUIDITY)
     ;; Transfer USDCx from vault to borrower
-    (try! (as-contract (contract-call? token transfer max-amount tx-sender caller none)))
+    (match (as-contract? ((with-all-assets-unsafe))
+      (try! (contract-call? token transfer max-amount tx-sender caller none))
+      true)
+      success true
+      err-code (asserts! false (err err-code)))
     ;; Update vault deposits
     (var-set total-deposits (- current-deposits max-amount))
     ;; Create loan record
@@ -143,7 +152,7 @@
       installments-total: INSTALLMENTS,
       installments-paid: u0,
       installment-size: installment-size,
-      due-block: (+ block-height BLOCKS-PER-PERIOD),
+      due-block: (+ stacks-block-height BLOCKS-PER-PERIOD),
       status: "active"
     })
     ;; Update credit identity with outstanding debt and record loan
@@ -177,7 +186,8 @@
     (asserts! (is-eq status "active") ERR-LOAN-REPAID)
     (asserts! (< paid total-installments) ERR-LOAN-REPAID)
     ;; Transfer installment from borrower to contract
-    (try! (contract-call? token transfer installment caller (as-contract tx-sender) none))
+    (let ((vault-principal (unwrap-panic (as-contract? () tx-sender))))
+    (try! (contract-call? token transfer installment caller vault-principal none)))
     ;; Add principal portion + vault interest back to deposits
     (var-set total-deposits (+ (var-get total-deposits) (+ principal-per-installment vault-interest)))
     ;; Track treasury interest
@@ -201,7 +211,7 @@
         (map-set loans caller (merge loan {
           amount-repaid: new-amount-repaid,
           installments-paid: new-paid,
-          due-block: (+ block-height BLOCKS-PER-PERIOD)
+          due-block: (+ stacks-block-height BLOCKS-PER-PERIOD)
         }))
         ;; Update outstanding debt on credit identity
         (try! (contract-call? .credit-identity update-debt caller (- total-owed new-amount-repaid)))

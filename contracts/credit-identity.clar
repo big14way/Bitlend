@@ -90,7 +90,7 @@
       repayment-rate: u100,
       outstanding-debt: u0,
       verified-sources: u0,
-      last-updated: block-height
+      last-updated: stacks-block-height
     })
     (ok new-id)
   )
@@ -105,7 +105,7 @@
     (map-set profiles recipient (merge profile {
       credit-score: score,
       verified-sources: sources,
-      last-updated: block-height
+      last-updated: stacks-block-height
     }))
     (ok true)
   )
@@ -119,7 +119,7 @@
     (asserts! (is-eq contract-caller (var-get vault-contract)) ERR-NOT-AUTHORIZED)
     (map-set profiles recipient (merge profile {
       outstanding-debt: new-debt,
-      last-updated: block-height
+      last-updated: stacks-block-height
     }))
     (ok true)
   )
@@ -133,7 +133,7 @@
     (asserts! (is-eq contract-caller (var-get vault-contract)) ERR-NOT-AUTHORIZED)
     (map-set profiles recipient (merge profile {
       total-loans: (+ (get total-loans profile) u1),
-      last-updated: block-height
+      last-updated: stacks-block-height
     }))
     (ok true)
   )
@@ -152,7 +152,7 @@
     (asserts! (is-eq contract-caller (var-get vault-contract)) ERR-NOT-AUTHORIZED)
     (map-set profiles recipient (merge profile {
       repayment-rate: new-rate,
-      last-updated: block-height
+      last-updated: stacks-block-height
     }))
     (ok true)
   )
@@ -172,7 +172,7 @@
     (map-set profiles recipient (merge profile {
       total-defaulted: new-defaulted,
       repayment-rate: new-rate,
-      last-updated: block-height
+      last-updated: stacks-block-height
     }))
     (ok true)
   )

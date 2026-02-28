@@ -79,20 +79,20 @@ plan:
       contract-name: credit-identity
       emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
       path: contracts/credit-identity.clar
-      clarity-version: 2
+      clarity-version: 4
     - transaction-type: emulated-contract-publish
       contract-name: credit-oracle
       emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
       path: contracts/credit-oracle.clar
-      clarity-version: 2
+      clarity-version: 4
     - transaction-type: emulated-contract-publish
       contract-name: loan-vault
       emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
       path: contracts/loan-vault.clar
-      clarity-version: 2
+      clarity-version: 4
     - transaction-type: emulated-contract-publish
       contract-name: mock-usdcx
       emulated-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
       path: contracts/mock-usdcx.clar
-      clarity-version: 2
-    epoch: '3.0'
+      clarity-version: 4
+    epoch: '3.3'
